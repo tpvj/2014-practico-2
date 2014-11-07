@@ -7,7 +7,7 @@
 	<assets path="Assets/images" rename="images" include="*" />
 	<assets path="Assets/sounds" rename="sounds" include="*" />
 	
-	<window width="800" height="600" fps="60" background="#888888" />
+	<window width="800" height="600" fps="60" background="#000000" />
 	
 	<!--icon path="Assets/openfl.svg" /-->
 	

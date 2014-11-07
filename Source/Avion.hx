@@ -11,10 +11,15 @@ class Avion extends GameElement{
 	var propulsionPlus:Animation;
 	var propulsionUp:Animation;
 	var propulsionDown:Animation;
-	//var explotando://;
+	private var inmunidad:Float;
+	var scene:HelloShooter;
+	private var sound:flash.media.Sound;
 	
-	public function new () {
+	public function new (scene:HelloShooter) {
 		super();
+
+		this.scene=scene;
+		sound = Assets.getSound ("sound3");
 		volando = new Bitmap( Assets.getBitmapData ("images/player_spaceship.png"));
 		this.addChild(volando);
 		this.x=50;
@@ -49,6 +54,7 @@ class Avion extends GameElement{
 		propulsionDown.x=54;
 		propulsionDown.y=-11;
 
+		inmunidad=0;
 	}	
 	
 	override public function updateLogic(time:Float){
@@ -81,6 +87,20 @@ class Avion extends GameElement{
 		}else{
 			propulsionPlus.visible=false;
 		}
+       	
+       	// Colision contra asteroide e inmunidad post-colision
+       	if(inmunidad>0){
+       		inmunidad-=time;
+       		this.alpha=0.5;
+       	}else{
+       		this.alpha=1;
+       		for(enemigo in scene.enemigosActivos){
+		       	if(HelloShooter.detectarColision(this,enemigo)){
+		       		inmunidad=6;
+		       		sound.play();
+		       	}       			
+       		}
+       	}
 	}
 
 }

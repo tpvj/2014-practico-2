@@ -5,9 +5,11 @@ import flash.display.Sprite;
 class GameElement extends Sprite{
 	
 	var hijos:Array<GameElement>;
+	var estado:Int;
 	
 	public function new () {
-		super();		
+		super();	
+		estado=0;	
 		hijos=new Array<GameElement>();
 	}
 	
