@@ -22,6 +22,8 @@ class HelloShooter extends GameElement {
 	public function new () {
 		super();
 
+		Bala.init(this);
+
 		fondo1=new FondoAnimado('images/background1.png',10);
 		fondo2=new FondoAnimado('images/background3.png',70);
 		fondo3=new FondoAnimado('images/background5.png',150);
@@ -64,7 +66,7 @@ class HelloShooter extends GameElement {
 		if(enemyTimer<0){
 			enemyTimer=Std.random(3)+2;
 			if(enemigos.length>0) enemigos.pop().atack();
-		}      	
+		}
        	
 	}
 

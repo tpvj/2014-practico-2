@@ -14,6 +14,7 @@ class Avion extends GameElement{
 	private var inmunidad:Float;
 	var scene:HelloShooter;
 	private var sound:flash.media.Sound;
+	var shootTimer:Float;
 	
 	public function new (scene:HelloShooter) {
 		super();
@@ -55,6 +56,7 @@ class Avion extends GameElement{
 		propulsionDown.y=-11;
 
 		inmunidad=0;
+		shootTimer=0;
 	}	
 	
 	override public function updateLogic(time:Float){
@@ -88,6 +90,16 @@ class Avion extends GameElement{
 			propulsionPlus.visible=false;
 		}
        	
+		if(shootTimer>0) shootTimer-=time;
+		if(shootTimer<=0 && InputManager.getInstance().keyPressed('Q')){
+			shootTimer=0.3;
+			var b = Bala.getBala();
+			if(b!=null){
+				b.x=this.x+60;
+				b.y=this.y+20;
+			}
+		}
+
        	// Colision contra asteroide e inmunidad post-colision
        	if(inmunidad>0){
        		inmunidad-=time;

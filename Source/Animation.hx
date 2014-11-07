@@ -35,12 +35,19 @@ class Animation extends GameElement {
 		t.drawTiles(graphics,[0,0,0]);
 		totalTime=0;
 	}
+
+	public function reset(){
+		totalTime=0;
+	}
+
+	public function getFrame():Int{
+		return Math.round(totalTime*10)%cant;			
+	}
 	
 	override public function updateLogic(time:Float){
 		graphics.clear();
 		totalTime+=time;
-		var pos:Int=Math.round(totalTime*10)%cant;	
-		t.drawTiles(graphics,[0,0,pos]);
+		t.drawTiles(graphics,[0,0,getFrame()]);
 	}
 
 }
